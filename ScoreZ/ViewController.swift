@@ -83,11 +83,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RoundTableViewCell
         cell.courseLabel.text = rounds.roundsArray[indexPath.row].course
         cell.dateLabel.text = dateFormatter.string(from: rounds.roundsArray[indexPath.row].date)
-        switch rounds.roundsArray[indexPath.row].result {
-        case "Good":
+        switch rounds.roundsArray[indexPath.row].result.lowercased() {
+        case "good":
             cell.courseLabel.textColor = UIColor.green
             cell.dateLabel.textColor = UIColor.green
-        case "Bad":
+        case "bad":
             cell.courseLabel.textColor = UIColor.red
             cell.dateLabel.textColor = UIColor.red
         default:

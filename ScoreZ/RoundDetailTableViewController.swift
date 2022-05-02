@@ -36,8 +36,10 @@ class RoundDetailTableViewController: UITableViewController {
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
         
+        courseField.delegate = self
         if round == nil{
             round = Round()
+            courseField.becomeFirstResponder()
         }
         
         updateUserInterface()
@@ -79,7 +81,15 @@ class RoundDetailTableViewController: UITableViewController {
             navigationController?.popViewController(animated: true)
         }
     }
+    
     @IBAction func textFieldEditingChange(_ sender: UITextField) {
         enableDisableSaveButton(text: sender.text!)
+    }
+}
+
+extension RoundDetailTableViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        courseField.becomeFirstResponder()
+        return true
     }
 }
